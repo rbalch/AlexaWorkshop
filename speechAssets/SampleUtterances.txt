@@ -1,0 +1,10 @@
+HowAreYouIntent how are you
+HowAreYouIntent how are you today
+HowAreYouIntent how do you feel
+
+StateRequestIntent describe {usstate}
+StateRequestIntent how about {usstate}
+StateRequestIntent go to {usstate}
+
+MyNameIsIntent my name is {myName}
+MyNameIsIntent call me {myName}

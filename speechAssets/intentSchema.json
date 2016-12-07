@@ -1,0 +1,28 @@
+{
+    "intents": [
+        {
+            "intent": "HelloWorldIntent"
+        },
+        {
+            "intent": "HowAreYouIntent"
+        },
+        {
+          "intent": "StateRequestIntent",
+          "slots":[
+            {
+              "name":"usstate",
+              "type":"AMAZON.US_STATE"
+            }
+          ]
+        },
+        {
+          "intent": "MyNameIsIntent",
+          "slots":[
+            {
+              "name":"myName",
+              "type":"AMAZON.US_FIRST_NAME"
+            }
+          ]
+        }
+      ]
+}
