@@ -1,6 +1,6 @@
 # Alexa Workshop
 
-I made this during the workshop so I could use python instead of nodejs. This implements the basics for the workshop using aws lambda and Alexa interactions
+I made this during the workshop so I could use python instead of nodejs. This implements the basics for the workshop using aws lambda and Alexa interactions.
 
 
 

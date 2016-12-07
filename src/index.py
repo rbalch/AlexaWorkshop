@@ -52,8 +52,17 @@ class BaseAlexaRequest(object):
 
     def response(self):
         if self.intentType == 'IntentRequest':
-            return getattr(self, self.intentName)
+            return getattr(self, self.intentName.replace('.', '_'))
         return 'intentType: {s.intentType}, intentName: {s.intentName}'.format(s=self)
+
+    @property
+    def AMAZON_CancelIntent(self):
+        return self.buildResponse(
+            speechletResponse=self.buildSpeechletResponse(
+                title='CancelIntent',
+                responseText='goodbye',
+            )
+        )
 
 
 class MyAlexaRequest(BaseAlexaRequest):

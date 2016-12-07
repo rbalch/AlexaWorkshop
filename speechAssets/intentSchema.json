@@ -23,6 +23,12 @@
               "type":"AMAZON.US_FIRST_NAME"
             }
           ]
+        },
+        {
+          "intent": "AMAZON.StopIntent"
+        },
+        {
+          "intent": "AMAZON.CancelIntent"
         }
       ]
 }
