@@ -80,6 +80,13 @@ class MyAlexaRequest(BaseAlexaRequest):
 
     @property
     def StateRequestIntent(self):
+        state = self.getSlot(name='usstate')
+        states = self.sessionAttributes.get('states', None)
+        if states is None:
+            self.sessionAttributes['states'] = [state]
+        elif state not in states:
+            self.sessionAttributes['states'].append(state)
+
         return self.buildResponse(
             speechletResponse=self.buildSpeechletResponse(
                 title='StateRequestIntent',
