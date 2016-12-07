@@ -13,16 +13,14 @@ class BaseAlexaRequest(object):
     def intentType(self):
         return self.event['request']['type']
 
-    def __init__(self, event, context):
+    def __init__(self, event):
         self.event = event
-        self.context = context
+        self.sessionAttributes = self.event['session']['attributes']
 
-    def buildResponse(self, speechletResponse, sessionAttributes=None):
-        if sessionAttributes is None:
-            sessionAttributes = {}
+    def buildResponse(self, speechletResponse):
         return dict(
             version='1.0',
-            sessionAttributes=sessionAttributes,
+            sessionAttributes=self.sessionAttributes,
             response=speechletResponse,
         )
 
@@ -71,10 +69,12 @@ class MyAlexaRequest(BaseAlexaRequest):
 
     @property
     def MyNameIsIntent(self):
+        name = self.getSlot(name='myName')
+        self.sessionAttributes['myName'] = name
         return self.buildResponse(
             speechletResponse=self.buildSpeechletResponse(
                 title='MyNameIsIntent',
-                responseText='your name is {name}'.format(name=self.getSlot(name='myName'))
+                responseText='your name is {name}'.format(name=name)
             )
         )
 
@@ -89,4 +89,4 @@ class MyAlexaRequest(BaseAlexaRequest):
 
 
 def lambda_handler(event, context):
-    return MyAlexaRequest(event=event, context=context).response()
+    return MyAlexaRequest(event=event).response()
